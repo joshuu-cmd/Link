@@ -1,1 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choices Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
 
+        h1 {
+            text-align: center;
+        }
+
+        .choice {
+            display: inline-block; /* Align boxes horizontally */
+            margin: 15px; /* Space between boxes */
+            padding: 20px; /* Space inside the box */
+            border: 2px solid #007BFF; /* Box border */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #ffffff; /* Box background color */
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+            text-align: center; /* Center text */
+            transition: background-color 0.3s; /* Transition effect */
+        }
+
+        .choice:hover {
+            background-color: #e9f5ff; /* Change background on hover */
+        }
+
+        a {
+            text-decoration: none; /* Remove underline */
+            color: #007BFF; /* Link color */
+        }
+
+        a:hover {
+            color: #0056b3; /* Darker link color on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>select an option to buy</h1>
+    <h4></h4>
+    <div class="choice">
+        <a href="#" onclick="selectChoice(15); return false;">1GB valid 1hour @ksh.15</a>
+    </div>
+    <div class="choice">
+        <a href="#" onclick="selectChoice(11); return false;">500mbs 24 hours @ksh.11</a>
+    </div>
+    <div class="choice">
+        <a href="#" onclick="selectChoice(25); return false;">2GB 24 hours @ksh.25</a>
+    </div>
+    <div class="choice">
+        <a href="#" onclick="selectChoice(35); return false;">Unlimited 24 hours @ksh.35</a>
+    </div>
+    
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="index.html">Back to Main Page</a>
+    </div>
+
+    <script>
+        function selectChoice(choice) {
+            // Confirm the selection
+            if (confirm("About to pay ksh. "+ choice + " to JOMANGO. Click OK to enter your Safaricom number.")) {
+                promptForNumber();
+            }
+        }
+
+        function promptForNumber() {
+            let number = prompt("Please enter your Safaricom number:");
+            if (number) {
+                // Validate the number
+                if (validateSafaricomNumber(number)) {
+                    alert("Thank you! Your number is valid.");
+                } else {
+                    alert("Invalid Airtel number. Please try again.");
+                    promptForNumber(); // Ask again if invalid
+                }
+            }
+        }
+
+        function validateSafaricomNumber(number) {
+            // Safaricom numbers start with '07' and are 10 digits long
+            const safaricomRegex = /^07\d{8}$/;
+            return safaricomRegex.test(number);
+        }
+    </script>
+
+</body>
+</html>
